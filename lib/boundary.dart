@@ -1,4 +1,4 @@
-part of intervals;
+part of libinterval;
 
 abstract class Boundary<T extends Comparable<T>> implements Comparable<Boundary<T>> {
 

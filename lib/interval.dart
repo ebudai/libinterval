@@ -1,4 +1,4 @@
-part of intervals;
+part of libinterval;
 
 class Interval<T extends Comparable<T>> implements Comparable<Interval<T>> {
 

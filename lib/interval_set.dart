@@ -1,9 +1,9 @@
-library intervals;
+library libinterval;
 
 import 'dart:collection';
 import 'package:quiver/core.dart';
-part 'package:interval_set/boundary.dart';
-part 'package:interval_set/interval.dart';
+part 'package:libinterval/boundary.dart';
+part 'package:libinterval/interval.dart';
 
 class IntervalSet<T extends Comparable<T>> extends IterableMixin<Interval<T>> {
 	IntervalSet(T start, T end) : this.of(Interval<T>.closed(start, end));

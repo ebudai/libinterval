@@ -1,6 +1,11 @@
-import 'package:kernel/text/serializer_combinators.dart';
 import 'package:test/test.dart';
-import 'package:interval_set/interval_set.dart';
+import 'package:libinterval/interval_set.dart';
+
+class Pair<T> {
+	const Pair(this.first, this.second);
+	final T first;
+	final T second;
+}
 
 void main() {
 
@@ -116,24 +121,24 @@ void main() {
 			];
 
 			const boundaries = [
-				Tuple2<num, num>(-10, -1),
-				Tuple2<num, num>(-5, 1),
-				Tuple2<num, num>(-4, 4),
-				Tuple2<num, num>(0, 10),
-				Tuple2<num, num>(1, 5),
+				Pair<num>(-10, -1),
+				Pair<num>(-5, 1),
+				Pair<num>(-4, 4),
+				Pair<num>(0, 10),
+				Pair<num>(1, 5),
 
-				Tuple2<num, num>(1, 10),
-				Tuple2<num, num>(3, 6),
-				Tuple2<num, num>(-2, 20),
+				Pair<num>(1, 10),
+				Pair<num>(3, 6),
+				Pair<num>(-2, 20),
 
-				Tuple2<num, num>(12, 22),
-				Tuple2<num, num>(10, 29),
-				Tuple2<num, num>(5, 13),
-				Tuple2<num, num>(1, 18),
-				Tuple2<num, num>(8, 10),
+				Pair<num>(12, 22),
+				Pair<num>(10, 29),
+				Pair<num>(5, 13),
+				Pair<num>(1, 18),
+				Pair<num>(8, 10),
 			];
 
-			const base = Tuple2<num, num>(1, 10);
+			const base = Pair<num>(1, 10);
 
 			group('element count', () {
 				for (final constructor in twoArgConstructors.entries) {
