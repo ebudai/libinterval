@@ -4,4 +4,5 @@ Mathematical Intervals
 
 ## Getting Started
 
-See /example for usage 
+See /example for usage
+ 

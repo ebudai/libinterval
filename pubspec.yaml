@@ -1,6 +1,6 @@
 name: libinterval
 description: A mathematical interval implementation with unbounded, closed, and open intervals, with standard operations (union, difference, intersection, symmetric difference)
-version: 0.1.3
+version: 0.1.4
 author: Eric Budai <eric_budai@hotmail.com>
 homepage: https://github.com/ebudai/libinterval
 

@@ -9,3 +9,12 @@
 ## [0.1.2]
 
 - fix dart pub complaints
+
+## [0.1.3]
+
+- added interval iterator
+- added examples
+
+## [0.1.4]
+
+- dartfmt complaints

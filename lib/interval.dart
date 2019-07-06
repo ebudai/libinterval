@@ -105,6 +105,8 @@ class Interval<T extends Comparable<T>> implements Comparable<Interval<T>> {
     return end.value == other.start.value && end.isClosed != other.start.isClosed || start.value == other.end.value && start.isClosed != other.end.isClosed;
   }
 
+  IntervalIterable<T> iterate(Incrementer<T> incrementFunction) => IntervalIterable<T>(this, incrementFunction);
+
   static bool _isInOrder<U extends Comparable<U>>(U start, U end) => (start?.compareTo(end ?? start) ?? 0) <= 0;
 
   final LeftBoundary<T> start;
