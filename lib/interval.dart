@@ -64,8 +64,9 @@ class Interval<T extends Comparable<T>> implements Comparable<Interval<T>> {
       end.compareTo(other.start) >= 0 && start.compareTo(other.end) <= 0;
 
   IntervalSet<T> union(Interval<T> other) {
-    if (!intersects(other) && !touches(other))
+    if (!intersects(other) && !touches(other)) {
       return IntervalSet<T>.of(this) + other;
+    }
 
     final start = this.start.min(other.start).asLeft;
     final end = this.end.max(other.end).asRight;
@@ -113,13 +114,16 @@ class Interval<T extends Comparable<T>> implements Comparable<Interval<T>> {
   bool contains(T value) => start.contains(value) && end.contains(value);
 
   bool touches(Interval<T> other) {
-    if (end.isUnbounded && other.start.isUnbounded)
+    if (end.isUnbounded && other.start.isUnbounded) {
       return other.start.compareTo(end) > 0;
-    if (start.isUnbounded && other.end.isUnbounded)
+    }
+    if (start.isUnbounded && other.end.isUnbounded) {
       return other.end.compareTo(start) < 0;
-    return end.value == other.start.value &&
-            end.isClosed != other.start.isClosed ||
-        start.value == other.end.value && start.isClosed != other.end.isClosed;
+    }
+    return (end.value == other.start.value &&
+            end.isClosed != other.start.isClosed) ||
+        (start.value == other.end.value &&
+            start.isClosed != other.end.isClosed);
   }
 
   IntervalIterable<T> iterate(Incrementer<T> incrementFunction) =>

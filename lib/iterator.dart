@@ -13,9 +13,12 @@ class _IntervalIterator<T extends Comparable<T>> implements Iterator<T> {
 
   @override
   bool moveNext() {
-    if (interval.end.isClosed && _current == interval.end.value) return false;
-    if (interval.end.isOpen && increment(_current) == interval.end.value)
+    if (interval.end.isClosed && _current == interval.end.value) {
       return false;
+    }
+    if (interval.end.isOpen && increment(_current) == interval.end.value) {
+      return false;
+    }
     _current = increment(_current);
     return true;
   }

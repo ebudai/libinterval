@@ -150,10 +150,12 @@ class IntervalSet<T extends Comparable<T>> extends IterableMixin<Interval<T>> {
   }
 
   List<Interval<T>> _intersectingIntervals(Interval<T> intersector) {
-    if (_intervals.first.start.compareTo(intersector.end) > 0)
+    if (_intervals.first.start.compareTo(intersector.end) > 0) {
       return <Interval<T>>[];
-    if (_intervals.last.end.compareTo(intersector.start) < 0)
+    }
+    if (_intervals.last.end.compareTo(intersector.start) < 0) {
       return <Interval<T>>[];
+    }
 
     final list = <Interval<T>>[];
     for (final interval in _intervals) {
