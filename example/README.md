@@ -1,6 +1,6 @@
 # basic
 
-basic.dart shows how to construct and use intervals and inteval sets.
+basic.dart shows how to construct and use intervals and interval sets.
 
 # iterate
 
