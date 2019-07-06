@@ -15,9 +15,11 @@ class IntervalSet<T extends Comparable<T>> extends IterableMixin<Interval<T>> {
 
   IntervalSet.open(T start, T end) : this.of(Interval<T>.open(start, end));
 
-  IntervalSet.leftOpen(T start, T end) : this.of(Interval<T>.leftOpen(start, end));
+  IntervalSet.leftOpen(T start, T end)
+      : this.of(Interval<T>.leftOpen(start, end));
 
-  IntervalSet.rightOpen(T start, T end) : this.of(Interval<T>.rightOpen(start, end));
+  IntervalSet.rightOpen(T start, T end)
+      : this.of(Interval<T>.rightOpen(start, end));
 
   IntervalSet.of(Interval<T> range) {
     _intervals.add(range);
@@ -35,7 +37,8 @@ class IntervalSet<T extends Comparable<T>> extends IterableMixin<Interval<T>> {
     _intervals.addAll(other._intervals);
   }
 
-  IntervalSet._(LeftBoundary<T> start, RightBoundary<T> end) : this.of(Interval<T>._(start, end));
+  IntervalSet._(LeftBoundary<T> start, RightBoundary<T> end)
+      : this.of(Interval<T>._(start, end));
 
   @override
   String toString() => '{ ${StringBuffer()..writeAll(_intervals, ',')} }';
@@ -112,7 +115,8 @@ class IntervalSet<T extends Comparable<T>> extends IterableMixin<Interval<T>> {
     return set;
   }
 
-  IntervalSet<T> symmetricDifference(IntervalSet<T> other) => union(other).difference(intersection(other));
+  IntervalSet<T> symmetricDifference(IntervalSet<T> other) =>
+      union(other).difference(intersection(other));
 
   IntervalSet<T> intersection(IntervalSet<T> other) {
     final set = IntervalSet<T>.empty();
@@ -146,8 +150,10 @@ class IntervalSet<T extends Comparable<T>> extends IterableMixin<Interval<T>> {
   }
 
   List<Interval<T>> _intersectingIntervals(Interval<T> intersector) {
-    if (_intervals.first.start.compareTo(intersector.end) > 0) return <Interval<T>>[];
-    if (_intervals.last.end.compareTo(intersector.start) < 0) return <Interval<T>>[];
+    if (_intervals.first.start.compareTo(intersector.end) > 0)
+      return <Interval<T>>[];
+    if (_intervals.last.end.compareTo(intersector.start) < 0)
+      return <Interval<T>>[];
 
     final list = <Interval<T>>[];
     for (final interval in _intervals) {

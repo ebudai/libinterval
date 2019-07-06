@@ -24,9 +24,14 @@ class Interval<T extends Comparable<T>> implements Comparable<Interval<T>> {
         end = RightOpenBoundary<T>(end);
 
   Interval.unbounded({T start, T end})
-      : assert(start == null || end == null, 'unbounded intervals cannot have both sides set'),
-        start = start == null ? LeftClosedBoundary<T>.unbounded() : LeftClosedBoundary<T>(start),
-        end = end == null ? RightClosedBoundary<T>.unbounded() : RightClosedBoundary<T>(end);
+      : assert(start == null || end == null,
+            'unbounded intervals cannot have both sides set'),
+        start = start == null
+            ? LeftClosedBoundary<T>.unbounded()
+            : LeftClosedBoundary<T>(start),
+        end = end == null
+            ? RightClosedBoundary<T>.unbounded()
+            : RightClosedBoundary<T>(end);
 
   Interval.degenerate(T value)
       : assert(value != null, 'cannot have unbounded degenerate interval'),
@@ -35,11 +40,16 @@ class Interval<T extends Comparable<T>> implements Comparable<Interval<T>> {
 
   Interval._(this.start, this.end)
       : assert(start != null && end != null, 'boundaries cannot be null'),
-        assert(start is! LeftDegenerateBoundary<T> || end is! RightDegenerateBoundary<T>, 'both sides cannot be degenerate'),
-        assert(start.compareTo(end) <= 0, 'start must be not be greater than end');
+        assert(
+            start is! LeftDegenerateBoundary<T> ||
+                end is! RightDegenerateBoundary<T>,
+            'both sides cannot be degenerate'),
+        assert(
+            start.compareTo(end) <= 0, 'start must be not be greater than end');
 
   @override
-  bool operator ==(dynamic other) => other is Interval<T> && start == other.start && end == other.end;
+  bool operator ==(dynamic other) =>
+      other is Interval<T> && start == other.start && end == other.end;
 
   @override
   int get hashCode => hash2(start.hashCode, end.hashCode);
@@ -50,10 +60,12 @@ class Interval<T extends Comparable<T>> implements Comparable<Interval<T>> {
   @override
   String toString() => '$start,$end';
 
-  bool intersects(Interval<T> other) => end.compareTo(other.start) >= 0 && start.compareTo(other.end) <= 0;
+  bool intersects(Interval<T> other) =>
+      end.compareTo(other.start) >= 0 && start.compareTo(other.end) <= 0;
 
   IntervalSet<T> union(Interval<T> other) {
-    if (!intersects(other) && !touches(other)) return IntervalSet<T>.of(this) + other;
+    if (!intersects(other) && !touches(other))
+      return IntervalSet<T>.of(this) + other;
 
     final start = this.start.min(other.start).asLeft;
     final end = this.end.max(other.end).asRight;
@@ -95,19 +107,26 @@ class Interval<T extends Comparable<T>> implements Comparable<Interval<T>> {
     return IntervalSet<T>._(start, end);
   }
 
-  IntervalSet<T> symmetricDifference(Interval<T> interval) => union(interval).difference(intersection(interval));
+  IntervalSet<T> symmetricDifference(Interval<T> interval) =>
+      union(interval).difference(intersection(interval));
 
   bool contains(T value) => start.contains(value) && end.contains(value);
 
   bool touches(Interval<T> other) {
-    if (end.isUnbounded && other.start.isUnbounded) return other.start.compareTo(end) > 0;
-    if (start.isUnbounded && other.end.isUnbounded) return other.end.compareTo(start) < 0;
-    return end.value == other.start.value && end.isClosed != other.start.isClosed || start.value == other.end.value && start.isClosed != other.end.isClosed;
+    if (end.isUnbounded && other.start.isUnbounded)
+      return other.start.compareTo(end) > 0;
+    if (start.isUnbounded && other.end.isUnbounded)
+      return other.end.compareTo(start) < 0;
+    return end.value == other.start.value &&
+            end.isClosed != other.start.isClosed ||
+        start.value == other.end.value && start.isClosed != other.end.isClosed;
   }
 
-  IntervalIterable<T> iterate(Incrementer<T> incrementFunction) => IntervalIterable<T>(this, incrementFunction);
+  IntervalIterable<T> iterate(Incrementer<T> incrementFunction) =>
+      IntervalIterable<T>(this, incrementFunction);
 
-  static bool _isInOrder<U extends Comparable<U>>(U start, U end) => (start?.compareTo(end ?? start) ?? 0) <= 0;
+  static bool _isInOrder<U extends Comparable<U>>(U start, U end) =>
+      (start?.compareTo(end ?? start) ?? 0) <= 0;
 
   final LeftBoundary<T> start;
   final RightBoundary<T> end;

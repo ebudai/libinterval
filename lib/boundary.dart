@@ -1,13 +1,17 @@
 part of libinterval;
 
-abstract class Boundary<T extends Comparable<T>> implements Comparable<Boundary<T>> {
+abstract class Boundary<T extends Comparable<T>>
+    implements Comparable<Boundary<T>> {
   const Boundary(this.value);
   const Boundary.unbounded() : this(null);
 
   @override
-  bool operator ==(dynamic other) => other is Boundary<T> && value == other.value;
+  bool operator ==(dynamic other) =>
+      other is Boundary<T> && value == other.value;
   @override
-  int get hashCode => value == null ? runtimeType.hashCode : hash2(runtimeType.hashCode, value.hashCode);
+  int get hashCode => value == null
+      ? runtimeType.hashCode
+      : hash2(runtimeType.hashCode, value.hashCode);
 
   bool get isUnbounded => value == null;
 
@@ -53,7 +57,8 @@ class LeftClosedBoundary<T extends Comparable<T>> extends LeftBoundary<T> {
   const LeftClosedBoundary.unbounded() : super.unbounded();
 
   @override
-  bool operator ==(dynamic other) => super == other && other is LeftClosedBoundary<T>;
+  bool operator ==(dynamic other) =>
+      super == other && other is LeftClosedBoundary<T>;
   @override
   int get hashCode => hash2(super.hashCode, runtimeType.hashCode);
 
@@ -78,7 +83,8 @@ class LeftClosedBoundary<T extends Comparable<T>> extends LeftBoundary<T> {
   bool get isOpen => false;
 
   @override
-  bool contains(T value) => isUnbounded || (value?.compareTo(this.value) ?? 0) >= 0;
+  bool contains(T value) =>
+      isUnbounded || (value?.compareTo(this.value) ?? 0) >= 0;
 
   @override
   RightBoundary<T> get asRight => RightOpenBoundary<T>(value);
@@ -89,7 +95,8 @@ class LeftOpenBoundary<T extends Comparable<T>> extends LeftBoundary<T> {
   const LeftOpenBoundary.unbounded() : super.unbounded();
 
   @override
-  bool operator ==(dynamic other) => super == other && other is LeftOpenBoundary<T>;
+  bool operator ==(dynamic other) =>
+      super == other && other is LeftOpenBoundary<T>;
   @override
   int get hashCode => hash2(super.hashCode, runtimeType.hashCode);
 
@@ -120,14 +127,18 @@ class LeftOpenBoundary<T extends Comparable<T>> extends LeftBoundary<T> {
   bool contains(T value) => value != null && value.compareTo(this.value) > 0;
 
   @override
-  RightBoundary<T> get asRight => isUnbounded ? RightDegenerateBoundary<T>() : RightClosedBoundary<T>(value);
+  RightBoundary<T> get asRight => isUnbounded
+      ? RightDegenerateBoundary<T>()
+      : RightClosedBoundary<T>(value);
 }
 
-class LeftDegenerateBoundary<T extends Comparable<T>> extends LeftOpenBoundary<T> {
+class LeftDegenerateBoundary<T extends Comparable<T>>
+    extends LeftOpenBoundary<T> {
   const LeftDegenerateBoundary() : super.unbounded();
 
   @override
-  bool operator ==(dynamic other) => super == other && other is LeftDegenerateBoundary<T>;
+  bool operator ==(dynamic other) =>
+      super == other && other is LeftDegenerateBoundary<T>;
   @override
   int get hashCode => hash2(super.hashCode, runtimeType.hashCode);
 
@@ -152,7 +163,8 @@ class RightClosedBoundary<T extends Comparable<T>> extends RightBoundary<T> {
   const RightClosedBoundary.unbounded() : super.unbounded();
 
   @override
-  bool operator ==(dynamic other) => super == other && other is RightClosedBoundary<T>;
+  bool operator ==(dynamic other) =>
+      super == other && other is RightClosedBoundary<T>;
   @override
   int get hashCode => hash2(super.hashCode, runtimeType.hashCode);
 
@@ -177,7 +189,8 @@ class RightClosedBoundary<T extends Comparable<T>> extends RightBoundary<T> {
   bool get isOpen => false;
 
   @override
-  bool contains(T value) => isUnbounded || (value?.compareTo(this.value) ?? 0) <= 0;
+  bool contains(T value) =>
+      isUnbounded || (value?.compareTo(this.value) ?? 0) <= 0;
 
   @override
   LeftBoundary<T> get asLeft => LeftOpenBoundary<T>(value);
@@ -188,7 +201,8 @@ class RightOpenBoundary<T extends Comparable<T>> extends RightBoundary<T> {
   const RightOpenBoundary.unbounded() : super.unbounded();
 
   @override
-  bool operator ==(dynamic other) => super == other && other is RightOpenBoundary<T>;
+  bool operator ==(dynamic other) =>
+      super == other && other is RightOpenBoundary<T>;
   @override
   int get hashCode => hash2(super.hashCode, runtimeType.hashCode);
 
@@ -219,14 +233,17 @@ class RightOpenBoundary<T extends Comparable<T>> extends RightBoundary<T> {
   bool contains(T value) => value != null && value.compareTo(this.value) < 0;
 
   @override
-  LeftBoundary<T> get asLeft => isUnbounded ? LeftDegenerateBoundary<T>() : LeftClosedBoundary<T>(value);
+  LeftBoundary<T> get asLeft =>
+      isUnbounded ? LeftDegenerateBoundary<T>() : LeftClosedBoundary<T>(value);
 }
 
-class RightDegenerateBoundary<T extends Comparable<T>> extends RightOpenBoundary<T> {
+class RightDegenerateBoundary<T extends Comparable<T>>
+    extends RightOpenBoundary<T> {
   const RightDegenerateBoundary() : super.unbounded();
 
   @override
-  bool operator ==(dynamic other) => super == other && other is RightDegenerateBoundary<T>;
+  bool operator ==(dynamic other) =>
+      super == other && other is RightDegenerateBoundary<T>;
   @override
   int get hashCode => hash2(super.hashCode, runtimeType.hashCode);
 
