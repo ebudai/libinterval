@@ -22,3 +22,7 @@
 ## [0.1.5]
 
 - dartfmt nonstandard setup removed
+
+## [0.1.6]
+
+- updated analysis_options.yaml to conform to dart pub
