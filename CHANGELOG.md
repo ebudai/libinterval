@@ -18,3 +18,7 @@
 ## [0.1.4]
 
 - dartfmt complaints
+
+## [0.1.5]
+
+- dartfmt nonstandard setup removed
