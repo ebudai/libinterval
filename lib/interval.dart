@@ -3,24 +3,24 @@ part of libinterval;
 class Interval<T extends Comparable<T>> implements Comparable<Interval<T>> {
 
 	Interval(T start, T end)
-		: assert(_IsInOrder(start, end), 'start must be not be greater than end')
+		: assert(_isInOrder(start, end), 'start must be not be greater than end')
 		, start = LeftClosedBoundary<T>(start)
 		, end = RightClosedBoundary<T>(end);
 
 	Interval.closed(T start, T end) : this(start, end);
 
 	Interval.open(T start, T end)
-		: assert(_IsInOrder(start, end), 'start must be not be greater than end')
+		: assert(_isInOrder(start, end), 'start must be not be greater than end')
 		, start = LeftOpenBoundary<T>(start)
 		, end = RightOpenBoundary<T>(end);
 
 	Interval.leftOpen(T start, T end)
-		: assert(_IsInOrder(start, end), 'start must be not be greater than end')
+		: assert(_isInOrder(start, end), 'start must be not be greater than end')
 		, start = LeftOpenBoundary<T>(start)
 		, end = RightClosedBoundary<T>(end);
 
 	Interval.rightOpen(T start, T end)
-		: assert(_IsInOrder(start, end), 'start must be not be greater than end')
+		: assert(_isInOrder(start, end), 'start must be not be greater than end')
 		, start = LeftClosedBoundary<T>(start)
 		, end = RightOpenBoundary<T>(end);
 
@@ -105,7 +105,7 @@ class Interval<T extends Comparable<T>> implements Comparable<Interval<T>> {
 			|| start.value == other.end.value && start.isClosed != other.end.isClosed;
 	}
 
-	static bool _IsInOrder<U extends Comparable<U>>(U start, U end) => (start?.compareTo(end ?? start) ?? 0) <= 0;
+	static bool _isInOrder<U extends Comparable<U>>(U start, U end) => (start?.compareTo(end ?? start) ?? 0) <= 0;
 
 	final LeftBoundary<T> start;
 	final RightBoundary<T> end;

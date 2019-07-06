@@ -1,6 +1,6 @@
 name: libinterval
 description: A mathematical interval implementation
-version: 0.1.0
+version: 0.1.2
 author: Eric Budai <eric_budai@hotmail.com>
 homepage: https://github.com/ebudai/libinterval
 
