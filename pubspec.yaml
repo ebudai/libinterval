@@ -1,11 +1,11 @@
 name: libinterval
-description: A mathematical interval implementation
-version: 0.1.2
+description: A mathematical interval implementation with unbounded, closed, and open intervals, with standard operations (union, difference, intersection, symmetric difference)
+version: 0.1.3
 author: Eric Budai <eric_budai@hotmail.com>
 homepage: https://github.com/ebudai/libinterval
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.0.0 <3.0.0"
 
 dependencies:
   quiver: ^2.0.3
